@@ -7,4 +7,12 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = yield
+    div id='wrapper'
+      == render 'layouts/navigation'
+      div id='page-wrapper'
+        .row
+          .col-lg-12
+            h1.page-header
+        == render 'layouts/messages'
+        = yield
+      == render 'layouts/footer'

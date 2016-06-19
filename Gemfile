@@ -16,6 +16,12 @@ gem 'high_voltage'
 gem 'sqlite3'
 gem 'turbolinks'
 gem 'font-awesome-rails'
+
+gem 'imgkit'
+gem 'mechanize'
+gem 'sidekiq'
+gem 'paperclip'
+
 group :development, :test do
   gem 'byebug'
   gem 'factory_girl_rails'
@@ -34,9 +40,9 @@ group :development do
   gem 'guard-rspec'
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'rb-fchange', require: false
-  gem 'rb-fsevent', require: false
-  gem 'rb-inotify', require: false
+  gem 'rb-fchange', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'rb-inotify', :require => false
   gem 'spring-commands-rspec'
   gem 'html2haml'
   gem 'haml2slim'
