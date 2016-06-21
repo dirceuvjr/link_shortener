@@ -21,6 +21,8 @@ gem 'imgkit'
 gem 'mechanize'
 gem 'sidekiq'
 gem 'paperclip'
+gem 'geokit-rails', :github => 'geokit/geokit-rails'
+gem 'agent_orange', :github => 'kevinelliott/agent_orange'
 
 group :development, :test do
   gem 'byebug'

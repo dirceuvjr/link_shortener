@@ -1,3 +1,17 @@
+GIT
+  remote: git://github.com/geokit/geokit-rails.git
+  revision: 45ae9852591d0682efec753bcdeaf09a3946c524
+  specs:
+    geokit-rails (2.1.0)
+      geokit (~> 1.5)
+      rails (>= 3.0)
+
+GIT
+  remote: git://github.com/kevinelliott/agent_orange.git
+  revision: 2d5dd9d289b70036b3d946359e0bda0c00f9bf7c
+  specs:
+    agent_orange (0.1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -102,6 +116,7 @@ GEM
     font-awesome-rails (4.6.3.0)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
+    geokit (1.10.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     guard (2.14.0)
@@ -344,6 +359,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  agent_orange!
   better_errors
   bootstrap-sass
   byebug
@@ -355,6 +371,7 @@ DEPENDENCIES
   faker
   figaro
   font-awesome-rails
+  geokit-rails!
   guard-bundler
   guard-rails
   guard-rspec
