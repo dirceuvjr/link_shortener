@@ -13,18 +13,16 @@ gem 'pundit'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'high_voltage'
-gem 'sqlite3'
 gem 'turbolinks'
 gem 'font-awesome-rails'
 
-gem 'imgkit'
 gem 'mechanize'
 gem 'sidekiq'
-gem 'paperclip'
 gem 'geokit-rails', :github => 'geokit/geokit-rails'
 gem 'agent_orange', :github => 'kevinelliott/agent_orange'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'byebug'
   gem 'factory_girl_rails'
   gem 'faker'
@@ -58,6 +56,7 @@ group :test do
 end
 
 group :production do
+  gem 'pg'
   gem 'rails_12factor'
   gem 'unicorn'
 end
