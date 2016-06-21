@@ -6,7 +6,7 @@ class CreateLinkClicks < ActiveRecord::Migration
       t.string :ip
 
       t.decimal :lat, :precision => 15, :scale => 10
-      t.decimal :lgn, :precision => 15, :scale => 10
+      t.decimal :lng, :precision => 15, :scale => 10
 
       t.string :device
 
