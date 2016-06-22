@@ -21,6 +21,8 @@ gem 'sidekiq'
 gem 'geokit-rails', :github => 'geokit/geokit-rails'
 gem 'agent_orange', :github => 'kevinelliott/agent_orange'
 
+gem 'clipboard-rails'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug'

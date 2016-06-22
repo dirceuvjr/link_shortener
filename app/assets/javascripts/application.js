@@ -14,4 +14,21 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require clipboard
 //= require_tree .
+
+$(document).ready(function(){
+  var clip = new Clipboard('.clipboard-btn');
+
+  clip.on('success', function(e) {
+    $(e.trigger).tooltip('show');
+    setTimeout(
+      function () {
+        $(e.trigger).tooltip('hide');
+      },
+      1000
+    );
+  });
+
+});
+
