@@ -10,7 +10,6 @@ class CreateLinks < ActiveRecord::Migration
       t.timestamps :null => false
     end
 
-    add_attachment :links, :snapshot
     add_index :links, :slug, :unique => true
 
   end
