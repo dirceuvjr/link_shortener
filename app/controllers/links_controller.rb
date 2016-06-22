@@ -4,8 +4,6 @@ class LinksController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:new, :process_slug]
 
-  geocode_ip_address :only => :process_slug
-
   # GET /:slug
   def process_slug
     @link = Link.find_by_slug(params[:slug])
@@ -19,8 +17,10 @@ class LinksController < ApplicationController
 
           click = LinkClick.new
           click.ip = request.remote_ip
-          click.lat = session[:geo_location].lat if session[:geo_location]
-          click.lng = session[:geo_location].lng if session[:geo_location]
+
+          location = Geocoders::MultiGeocoder.geocode(click.ip)
+          click.lat = location.lat
+          click.lng = location.lng
 
           click.device = ua.device.name
 
