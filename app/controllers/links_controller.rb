@@ -4,7 +4,7 @@ class LinksController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:new, :process_slug]
 
-  geocode_ip_address
+  geocode_ip_address :only => :process_slug
 
   # GET /:slug
   def process_slug
@@ -50,18 +50,9 @@ class LinksController < ApplicationController
     @links = current_user.links
   end
 
-  # GET /links/1
-  # GET /links/1.json
-  def show
-  end
-
   # GET /links/new
   def new
     @link = Link.new
-  end
-
-  # GET /links/1/edit
-  def edit
   end
 
   # POST /links
@@ -80,7 +71,6 @@ class LinksController < ApplicationController
       end
     end
   end
-
 
   # DELETE /links/1
   # DELETE /links/1.json

@@ -6,6 +6,10 @@ class Link < ActiveRecord::Base
   validates_presence_of :url
   validates_format_of :url, :with => /\A(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/
 
+  def display_slug
+    ENV['BASE_URL'] + self.slug
+  end
+
   private
   def generate_slug
     require 'base64'

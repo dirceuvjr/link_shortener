@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160619192747) do
+ActiveRecord::Schema.define(version: 20160620213102) do
+
+  create_table "link_clicks", force: :cascade do |t|
+    t.integer  "link_id"
+    t.string   "ip"
+    t.decimal  "lat",                      precision: 15, scale: 10
+    t.decimal  "lng",                      precision: 15, scale: 10
+    t.string   "device"
+    t.string   "platform"
+    t.string   "platform_version"
+    t.string   "operating_system"
+    t.string   "operating_system_version"
+    t.string   "engine"
+    t.string   "engine_version"
+    t.string   "browser"
+    t.string   "browser_version"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "link_clicks", ["browser"], name: "index_link_clicks_on_browser"
+  add_index "link_clicks", ["device"], name: "index_link_clicks_on_device"
+  add_index "link_clicks", ["engine"], name: "index_link_clicks_on_engine"
+  add_index "link_clicks", ["lat", "lng"], name: "index_link_clicks_on_lat_and_lng"
+  add_index "link_clicks", ["link_id"], name: "index_link_clicks_on_link_id"
+  add_index "link_clicks", ["operating_system"], name: "index_link_clicks_on_operating_system"
+  add_index "link_clicks", ["platform"], name: "index_link_clicks_on_platform"
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
