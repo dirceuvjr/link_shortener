@@ -1,0 +1,35 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    .panel.panel-default
+      .panel-heading
+        | Your links
+      .panel-body
+        .table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th #
+                th URL
+                th Slug
+                th Title
+                /th
+                th
+            tbody
+              - @links.each do |link|
+                tr
+                  td = link.id
+                  td
+                    .input-group
+                      = text_field_tag "url_#{link.id}", link.url, :readonly => true, :class => 'string form-control'
+                      span.input-group-btn
+                        = button_tag "<i class='fa fa-clipboard'></i>".html_safe, :data => { 'clipboard-target' => "#url_#{link.id}", :toggle => 'tooltip', :placement => 'bottom', :title => 'Coped!', :container => 'body'  }, :class => 'btn btn-default clipboard-btn'
+                  td
+                    .input-group
+                      = text_field_tag "slug_#{link.id}", link.display_slug, :readonly => true, :class => 'string form-control'
+                      span.input-group-btn
+                        = button_tag "<i class='fa fa-clipboard'></i>".html_safe, :data => { 'clipboard-target' => "#slug_#{link.id}", :toggle => 'tooltip', :placement => 'bottom', :title => 'Coped!', :container => 'body' }, :class => 'btn btn-default clipboard-btn'
+                  td = link.title
+                  /td = link_to 'Statistics', link
+                  td = link_to "<i class='fa fa-remove fa-fw'></i>".html_safe, link, :data => { :confirm => 'Are you sure?' }, :method => :delete
+      .panel-footer
+        = link_to 'New Link', new_link_path
