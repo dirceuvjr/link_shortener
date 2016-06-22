@@ -24,7 +24,7 @@ $(document).ready(function(){
     $(e.trigger).tooltip('show');
     setTimeout(
       function () {
-        $(e.trigger).tooltip('hide');
+        $(e.trigger).tooltip('dispose');
       },
       1000
     );
