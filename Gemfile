@@ -21,7 +21,7 @@ gem 'font-awesome-rails'
 gem 'mechanize'
 gem 'sidekiq'
 gem 'geokit-rails', :github => 'geokit/geokit-rails'
-gem 'agent_orange', :github => 'kevinelliott/agent_orange'
+gem 'agent_orange'#, :github => 'kevinelliott/agent_orange'
 
 gem 'clipboard-rails'
 
