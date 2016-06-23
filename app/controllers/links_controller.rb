@@ -1,3 +1,6 @@
+require 'openssl'
+require 'geokit'
+
 class LinksController < ApplicationController
 
   before_action :set_link, :only => [:show, :edit, :destroy]
@@ -18,7 +21,7 @@ class LinksController < ApplicationController
           click = LinkClick.new
           click.ip = request.remote_ip
 
-          location = Geocoders::MultiGeocoder.geocode(click.ip)
+          location = Geokit::Geocoders::MultiGeocoder.geocode(click.ip)
           click.lat = location.lat
           click.lng = location.lng
 
