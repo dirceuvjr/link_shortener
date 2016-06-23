@@ -10,7 +10,7 @@ class GeoLocator
     location = Geokit::Geocoders::FreeGeoIpGeocoder.geocode(click.ip)
     country = ISO3166::Country.new(location.country_code)
 
-    puts "Location for #{click.ip} => {lat => #{location.lat}, lng => #{location.lng}, country => #{country.name} }"
+    logger.info "Location for #{click.ip} => {lat => #{location.lat}, lng => #{location.lng}, country => #{country.name} }"
 
     click.lat = location.lat
     click.lng = location.lng
