@@ -60,7 +60,7 @@ class LinksController < ApplicationController
     @link.user = current_user
 
     respond_to do |format|
-      if @link.save
+      if verify_recaptcha(:model => @link) && @link.save
         format.html { redirect_to links_url, :notice => 'Link was successfully created.' }
       else
         format.html { render :new }
