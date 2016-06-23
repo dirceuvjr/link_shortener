@@ -1,6 +1,3 @@
-require 'openssl'
-require 'geokit'
-
 class LinksController < ApplicationController
 
   before_action :set_link, :only => [:show, :edit, :destroy]
@@ -22,10 +19,6 @@ class LinksController < ApplicationController
           click.ip = request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]
           click.link = @link
 
-          location = Geokit::Geocoders::FreeGeoIpGeocoder.geocode(click.ip)
-          click.lat = location.lat
-          click.lng = location.lng
-
           click.device = ua.device.name
 
           click.platform = ua.device.platform.name
@@ -42,6 +35,7 @@ class LinksController < ApplicationController
 
           click.save!
 
+          GeoLocator.perform_async(click.id)
         end
       }
     end
@@ -67,11 +61,9 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, :notice => 'Link was successfully created.' }
-        format.json { render :show, :status => :created, :location => @link }
+        format.html { redirect_to links_url, :notice => 'Link was successfully created.' }
       else
         format.html { render :new }
-        format.json { render :json => @link.errors, :status => :unprocessable_entity }
       end
     end
   end

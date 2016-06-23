@@ -24,6 +24,9 @@ gem 'geokit-rails', :github => 'geokit/geokit-rails'
 gem 'agent_orange'#, :github => 'kevinelliott/agent_orange'
 
 gem 'clipboard-rails'
+gem "chartkick"
+gem 'groupdate'
+gem 'data-confirm-modal', :github => 'ifad/data-confirm-modal'
 
 group :development, :test do
   gem 'sqlite3'

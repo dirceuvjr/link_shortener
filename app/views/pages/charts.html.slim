@@ -1,0 +1,42 @@
+- @link = current_user.links.find_by_id(params[:link_id])
+== content_for :head
+  = javascript_include_tag "https://www.google.com/jsapi", 'data-turbolinks-track' => true
+
+.row
+  .col-lg-12
+    .panel.panel-default
+      .panel-heading
+        | Statistics for Link##{@link.id}
+      .panel-body
+        .row
+          .col-lg-4
+            h4.text-center
+              | Browsers
+              hr
+            = pie_chart @link.link_clicks.group(:browser).count
+          .col-lg-4
+            h4.text-center
+              | OS's
+              hr
+            = pie_chart @link.link_clicks.group(:operating_system).count
+          .col-lg-4
+            h4.text-center
+              | Devices
+              hr
+            = pie_chart @link.link_clicks.group(:device).count
+        .row
+          .col-lg-12
+            hr
+        .row
+          .col-lg-4
+            h4.text-center
+              | By Day
+              hr
+            = line_chart @link.link_clicks.group_by_day(:created_at).count
+          .col-lg-4
+            h4.text-center
+              | By Country
+              hr
+            = geo_chart @link.link_clicks.group(:country).count
+      .panel-footer
+        = link_to 'My Links', links_path

@@ -15,6 +15,9 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require clipboard
+//= require Chart.bundle
+//= require chartkick
+//= require data-confirm-modal
 //= require_tree .
 
 $(document).ready(function(){

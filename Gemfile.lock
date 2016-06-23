@@ -6,6 +6,13 @@ GIT
       geokit (~> 1.5)
       rails (>= 3.0)
 
+GIT
+  remote: git://github.com/ifad/data-confirm-modal.git
+  revision: e6cbfe45ec0908166512d12bcef5e43a5b3ab435
+  specs:
+    data-confirm-modal (1.2.0)
+      railties (>= 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,6 +73,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chartkick (2.0.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     clipboard-rails (1.5.10)
@@ -111,6 +119,8 @@ GEM
     geokit (1.10.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    groupdate (3.0.0)
+      activesupport (>= 3)
     guard (2.14.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -351,7 +361,9 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara
+  chartkick
   clipboard-rails
+  data-confirm-modal!
   database_cleaner
   devise
   devise_invitable
@@ -360,6 +372,7 @@ DEPENDENCIES
   figaro
   font-awesome-rails
   geokit-rails!
+  groupdate
   guard-bundler
   guard-rails
   guard-rspec

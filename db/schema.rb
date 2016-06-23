@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620213102) do
+ActiveRecord::Schema.define(version: 20160623163518) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "link_clicks", force: :cascade do |t|
     t.integer  "link_id"
@@ -29,15 +32,17 @@ ActiveRecord::Schema.define(version: 20160620213102) do
     t.string   "browser_version"
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
+    t.string   "country"
   end
 
-  add_index "link_clicks", ["browser"], name: "index_link_clicks_on_browser"
-  add_index "link_clicks", ["device"], name: "index_link_clicks_on_device"
-  add_index "link_clicks", ["engine"], name: "index_link_clicks_on_engine"
-  add_index "link_clicks", ["lat", "lng"], name: "index_link_clicks_on_lat_and_lng"
-  add_index "link_clicks", ["link_id"], name: "index_link_clicks_on_link_id"
-  add_index "link_clicks", ["operating_system"], name: "index_link_clicks_on_operating_system"
-  add_index "link_clicks", ["platform"], name: "index_link_clicks_on_platform"
+  add_index "link_clicks", ["browser"], name: "index_link_clicks_on_browser", using: :btree
+  add_index "link_clicks", ["country"], name: "index_link_clicks_on_country", using: :btree
+  add_index "link_clicks", ["device"], name: "index_link_clicks_on_device", using: :btree
+  add_index "link_clicks", ["engine"], name: "index_link_clicks_on_engine", using: :btree
+  add_index "link_clicks", ["lat", "lng"], name: "index_link_clicks_on_lat_and_lng", using: :btree
+  add_index "link_clicks", ["link_id"], name: "index_link_clicks_on_link_id", using: :btree
+  add_index "link_clicks", ["operating_system"], name: "index_link_clicks_on_operating_system", using: :btree
+  add_index "link_clicks", ["platform"], name: "index_link_clicks_on_platform", using: :btree
 
   create_table "links", force: :cascade do |t|
     t.string   "url"
@@ -45,16 +50,12 @@ ActiveRecord::Schema.define(version: 20160620213102) do
     t.integer  "user_id"
     t.datetime "expiration_date"
     t.string   "title"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "snapshot_file_name"
-    t.string   "snapshot_content_type"
-    t.integer  "snapshot_file_size"
-    t.datetime "snapshot_updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
-  add_index "links", ["slug"], name: "index_links_on_slug", unique: true
-  add_index "links", ["user_id"], name: "index_links_on_user_id"
+  add_index "links", ["slug"], name: "index_links_on_slug", unique: true, using: :btree
+  add_index "links", ["user_id"], name: "index_links_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -79,10 +80,12 @@ ActiveRecord::Schema.define(version: 20160620213102) do
     t.integer  "invitations_count",      default: 0
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count"
-  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["invitation_token"], name: "index_users_on_invitation_token", unique: true, using: :btree
+  add_index "users", ["invitations_count"], name: "index_users_on_invitations_count", using: :btree
+  add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "link_clicks", "links"
+  add_foreign_key "links", "users"
 end

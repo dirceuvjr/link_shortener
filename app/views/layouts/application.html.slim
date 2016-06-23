@@ -4,6 +4,7 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title Shrink Link
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = yield :head
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body

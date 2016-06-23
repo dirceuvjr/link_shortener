@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+  links:
+    index:
+      destroy_confirm:
+        body: 'Blah'
+        title: 'Bleh'
+        cancel: 'Cancel'
+        proceed: 'Continue?'
+      destroy: 'Delete'
