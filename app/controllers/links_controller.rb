@@ -20,8 +20,9 @@ class LinksController < ApplicationController
 
           click = LinkClick.new
           click.ip = request.remote_ip
+          click.link = @link
 
-          location = Geokit::Geocoders::MultiGeocoder.geocode(click.ip)
+          location = Geokit::Geocoders::FreeGeoIpGeocoder.geocode(click.ip)
           click.lat = location.lat
           click.lng = location.lng
 
