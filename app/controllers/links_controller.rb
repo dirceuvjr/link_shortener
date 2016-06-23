@@ -8,6 +8,8 @@ class LinksController < ApplicationController
   def process_slug
     @link = Link.find_by_slug(params[:slug])
 
+    redirect_to page_path(:id => 'not_found') and return if @link.nil? or @link.url.nil?
+
     respond_to do |format|
       format.html {
         if redirect_to @link.url

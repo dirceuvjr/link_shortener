@@ -1,0 +1,12 @@
+.row
+  .col-lg-8.col-lg-offset-2
+    .panel.panel-default
+      .panel-heading
+        i.fa.fa-unlink.fa-fw
+        | Link not found
+      .panel-body
+        .row
+          .col-lg-12
+            .text-center The url you're looking for doesn't exist or expired.
+      .panel-footer
+        = link_to "<i class='fa fa-link fa-fw'></i> Home".html_safe, root_path
