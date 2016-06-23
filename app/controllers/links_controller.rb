@@ -19,7 +19,7 @@ class LinksController < ApplicationController
           ua = AgentOrange::UserAgent.new(user_agent_string)
 
           click = LinkClick.new
-          click.ip = request.remote_ip
+          click.ip = request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]
           click.link = @link
 
           location = Geokit::Geocoders::FreeGeoIpGeocoder.geocode(click.ip)
