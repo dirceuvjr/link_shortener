@@ -22,6 +22,7 @@ gem 'mechanize'
 gem 'sidekiq'
 gem 'geokit-rails', :github => 'geokit/geokit-rails'
 gem 'agent_orange'#, :github => 'kevinelliott/agent_orange'
+gem 'countries', :require => 'countries/global'
 
 gem 'clipboard-rails'
 gem "chartkick"

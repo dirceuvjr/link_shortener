@@ -8,10 +8,13 @@ class GeoLocator
     click = LinkClick.find(link_click_id)
 
     location = Geokit::Geocoders::FreeGeoIpGeocoder.geocode(click.ip)
-    puts "Location for #{click.ip} => {lat => #{location.lat}, lng => #{location.lng} }"
+    country = ISO3166::Country.new(location.country_code)
+
+    puts "Location for #{click.ip} => {lat => #{location.lat}, lng => #{location.lng}, country => #{country.name} }"
+
     click.lat = location.lat
     click.lng = location.lng
-    click.country = location.country
+    click.country = country.name
 
     click.save
   end
