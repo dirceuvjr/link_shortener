@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623163518) do
+ActiveRecord::Schema.define(version: 20160624154825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "link_click_counts", force: :cascade do |t|
+    t.integer  "link_id"
+    t.date     "date"
+    t.string   "agg_type"
+    t.string   "name"
+    t.integer  "count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "link_click_counts", ["date", "agg_type", "name"], name: "index_link_click_counts_on_date_and_agg_type_and_name", unique: true, using: :btree
+  add_index "link_click_counts", ["link_id"], name: "index_link_click_counts_on_link_id", using: :btree
 
   create_table "link_clicks", force: :cascade do |t|
     t.integer  "link_id"
@@ -86,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160623163518) do
   add_index "users", ["invited_by_id"], name: "index_users_on_invited_by_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "link_click_counts", "links"
   add_foreign_key "link_clicks", "links"
   add_foreign_key "links", "users"
 end

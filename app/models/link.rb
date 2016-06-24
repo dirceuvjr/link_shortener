@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
   belongs_to :user
 
   has_many :link_clicks
+  has_many :link_click_counts
 
   after_create :generate_slug, :scrape_url
 
