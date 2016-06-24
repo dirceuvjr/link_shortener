@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
 
-  before_action :set_link, :only => [:show, :edit, :destroy]
+  before_action :set_link, :only => [:destroy]
 
   before_filter :authenticate_user!, :except => [:new, :process_slug]
 
@@ -70,8 +70,8 @@ class LinksController < ApplicationController
     end
   end
 
-  # DELETE /links/1
-  # DELETE /links/1.json
+  # DELETE /links/:slug
+  # DELETE /links/:slug.json
   def destroy
     @link.destroy
     respond_to do |format|
@@ -83,7 +83,7 @@ class LinksController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_link
-    @link = Link.find(params[:id])
+    @link = Link.find_by_slug(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

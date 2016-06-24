@@ -13,6 +13,10 @@ class Link < ActiveRecord::Base
     ENV['BASE_URL'] + self.slug
   end
 
+  def to_param
+    self.slug
+  end
+
   private
   def generate_slug
     require 'base64'

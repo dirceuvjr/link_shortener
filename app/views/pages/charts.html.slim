@@ -1,7 +1,3 @@
-- @link = current_user.links.find_by_id(params[:link_id])
-== content_for :head
-  = javascript_include_tag "https://www.google.com/jsapi", 'data-turbolinks-track' => true
-
 .row
   .col-lg-12
     .panel.panel-default
@@ -34,8 +30,7 @@
               hr
             = line_chart @link.link_clicks.group_by_day(:created_at).count
           .col-lg-4
-            h4.text-center
-              | By Country
+            h4.text-center By Country
               hr
             = geo_chart @link.link_clicks.group(:country).count
       .panel-footer

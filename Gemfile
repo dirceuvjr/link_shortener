@@ -25,7 +25,7 @@ gem 'agent_orange'#, :github => 'kevinelliott/agent_orange'
 gem 'countries', :require => 'countries/global'
 
 gem 'clipboard-rails'
-gem 'chartkick'
+gem 'chartkick', :github => 'ankane/chartkick'
 gem 'groupdate'
 gem 'data-confirm-modal', :github => 'ifad/data-confirm-modal'
 

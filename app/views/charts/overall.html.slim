@@ -1,0 +1,19 @@
+== content_for :head
+  = javascript_include_tag "https://www.google.com/jsapi", 'data-turbolinks-track' => true
+
+.row
+  .col-lg-8.col-lg-offset-2
+    .panel.panel-default
+      .panel-heading
+        | Statistics for
+        strong #{@link.slug}
+      .panel-body
+        .row
+          .col-lg-3
+            == render 'charts_nav'
+          .col-lg-9
+            h3.text-center Overall
+            hr
+            = line_chart link_chart_path(:format => :json), :label => 'Clicks'
+      .panel-footer
+        = link_to 'My Links', links_path

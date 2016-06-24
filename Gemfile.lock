@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/ankane/chartkick.git
+  revision: dace421b9f6bad9abd121a3d1d9dd86e1ab89394
+  specs:
+    chartkick (2.0.0)
+
+GIT
   remote: git://github.com/geokit/geokit-rails.git
   revision: 45ae9852591d0682efec753bcdeaf09a3946c524
   specs:
@@ -73,7 +79,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    chartkick (2.0.0)
     childprocess (0.5.9)
       ffi (~> 1.0, >= 1.0.11)
     clipboard-rails (1.5.10)
@@ -368,7 +373,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara
-  chartkick
+  chartkick!
   clipboard-rails
   countries
   data-confirm-modal!
