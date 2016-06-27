@@ -21,19 +21,27 @@ class LinksController < ApplicationController
           click.ip = request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]
           click.link = @link
 
-          click.device = ua.device.name
+          unless ua.nil? || ua.device.nil?
+            click.device = ua.device.name unless ua.device.name.nil?
 
-          click.platform = ua.device.platform.name
-          click.platform_version = ua.device.platform.version
+            click.platform = ua.device.platform.name unless ua.device.platform.nil? || ua.device.platform.name.nil?
+            click.platform_version = ua.device.platform.version unless ua.device.platform.nil? || ua.device.platform.version.nil?
 
-          click.operating_system = ua.device.operating_system.name
-          click.operating_system_version = ua.device.operating_system.version
+            unless ua.device.operating_system.nil?
+              click.operating_system = ua.device.operating_system.name unless ua.device.operating_system.name.nil?
+              click.operating_system_version = ua.device.operating_system.version unless ua.device.operating_system.version.nil?
+            end
 
-          click.engine = ua.device.engine.name
-          click.engine_version = ua.device.engine.version
+            unless ua.device.engine.nil?
+              click.engine = ua.device.engine.name unless ua.device.engine.name.nil?
+              click.engine_version = ua.device.engine.version unless ua.device.engine.version.nil?
 
-          click.browser = ua.device.engine.browser.name
-          click.browser_version = ua.device.engine.browser.version
+              unless ua.device.engine.browser.nil?
+                click.browser = ua.device.engine.browser.name unless ua.device.engine.browser.name.nil?
+                click.browser_version = ua.device.engine.browser.version unless ua.device.engine.browser.version.nil?
+              end
+            end
+          end
 
           click.save!
 
