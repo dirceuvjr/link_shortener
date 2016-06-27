@@ -27,7 +27,7 @@ class ClickCountAggregator
     if type === :overall
       {'' => @link.link_clicks.where(['created_at between ? and ?', @date.beginning_of_day, @date.end_of_day]).count}
     else
-      @link.link_clicks.where(['created_at between ? and ?', @date.beginning_of_day, @date.end_of_day]).group(type).count
+      @link.link_clicks.where(["#{type} is not null and created_at between ? and ?", @date.beginning_of_day, @date.end_of_day]).group(type).count
     end
   end
 
