@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624221030) do
+ActiveRecord::Schema.define(version: 20160627200038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160624221030) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "link_click_counts", ["date", "agg_type", "name"], name: "index_link_click_counts_on_date_and_agg_type_and_name", unique: true, using: :btree
+  add_index "link_click_counts", ["link_id", "date", "agg_type", "name"], name: "link_click_counts_unique", unique: true, using: :btree
   add_index "link_click_counts", ["link_id"], name: "index_link_click_counts_on_link_id", using: :btree
 
   create_table "link_clicks", force: :cascade do |t|
@@ -34,17 +34,17 @@ ActiveRecord::Schema.define(version: 20160624221030) do
     t.string   "ip"
     t.decimal  "lat",                      precision: 15, scale: 10
     t.decimal  "lng",                      precision: 15, scale: 10
-    t.string   "device"
-    t.string   "platform"
-    t.string   "platform_version"
-    t.string   "operating_system"
-    t.string   "operating_system_version"
-    t.string   "engine"
-    t.string   "engine_version"
-    t.string   "browser"
-    t.string   "browser_version"
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
+    t.string   "device",                                             default: "Unknown"
+    t.string   "platform",                                           default: "Unknown"
+    t.string   "platform_version",                                   default: "Unknown"
+    t.string   "operating_system",                                   default: "Unknown"
+    t.string   "operating_system_version",                           default: "Unknown"
+    t.string   "engine",                                             default: "Unknown"
+    t.string   "engine_version",                                     default: "Unknown"
+    t.string   "browser",                                            default: "Unknown"
+    t.string   "browser_version",                                    default: "Unknown"
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
     t.string   "country"
   end
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160624221030) do
   add_index "link_clicks", ["platform"], name: "index_link_clicks_on_platform", using: :btree
 
   create_table "links", force: :cascade do |t|
-    t.string   "url"
+    t.text     "url"
     t.string   "slug"
     t.integer  "user_id"
     t.datetime "expiration_date"
