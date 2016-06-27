@@ -32,8 +32,7 @@ class ClickCountAggregator
   end
 
   def create_link_click_count(type, name, count)
-    lcc = LinkClickCount.where(:agg_type => type, :name => name, :date => @date).first_or_create
-    lcc.link = @link
+    lcc = LinkClickCount.where(:agg_type => type, :name => name, :date => @date, :link => @link).first_or_create
     lcc.count = count
 
     lcc.save!
