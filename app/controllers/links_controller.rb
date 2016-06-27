@@ -63,9 +63,15 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if verify_recaptcha(:model => @link) && @link.save
-        format.html { redirect_to links_url, :notice => 'Link was successfully created.' }
+        format.html {
+          ClickCountAggregator.perform_async(@link.id)
+          redirect_to links_url, :notice => 'Link was successfully created.'
+        }
       else
-        format.html { render :new }
+        format.html {
+          flash[:error] = @link.errors.full_messages
+          render :new
+        }
       end
     end
   end
