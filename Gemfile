@@ -30,6 +30,7 @@ gem 'groupdate'
 gem 'data-confirm-modal', :github => 'ifad/data-confirm-modal'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'addressable'
 
 group :development, :test do
   gem 'sqlite3'

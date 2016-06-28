@@ -368,6 +368,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   agent_orange
   better_errors
   bootstrap-sass

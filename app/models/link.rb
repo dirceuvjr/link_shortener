@@ -7,7 +7,7 @@ class Link < ActiveRecord::Base
   after_create :generate_slug, :scrape_url
 
   validates_presence_of :url
-  validates_format_of :url, :with => /\A(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\z/
+  validates :url, :url => true
 
   def display_slug
     ENV['BASE_URL'] + self.slug
